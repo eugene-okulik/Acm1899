@@ -12,4 +12,3 @@ my_dict['dict'].pop('key1')
 my_dict['set'].add(22)
 my_dict['set'].remove(16)
 print(my_dict)
-
