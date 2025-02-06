@@ -15,4 +15,3 @@ def print_n_fib(n):
 nums = [5, 200, 1000, 100000]
 for n in nums:
     print_n_fib(n)
-    
