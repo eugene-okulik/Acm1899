@@ -2,11 +2,11 @@ def operator(func):
 
     def wrapper(*args):
         if first < 0 or second < 0:
-            return func(*args, operation = '*')
+            return func(*args, operation='*')
         elif first > second:
-            return func(*args, operation = '-')
+            return func(*args, operation='-')
         elif second > first:
-            return func(*args, operation = '/')
+            return func(*args, operation='/')
         elif first == second:
             return func(*args, operation='+')
     return wrapper
