@@ -2,7 +2,6 @@ class Book:
     page_material = 'paper'
     presence_of_text = True
 
-
     def __init__(self, book_title, author, number_of_pages, ISBN, book_reserved):
         self.book_title = book_title
         self.author = author
@@ -32,7 +31,6 @@ for i in book_list:
 
 
 class Schoolbook(Book):
-
 
     def __init__(self, book_title, author, number_of_pages, ISBN, book_reserved, subject, level, tasks_availability):
         super().__init__(book_title, author, number_of_pages, ISBN, book_reserved)
