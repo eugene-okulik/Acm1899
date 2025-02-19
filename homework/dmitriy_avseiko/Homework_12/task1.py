@@ -60,7 +60,7 @@ class Bouquet:
         lst_tuples = []
         for item in flower_dict.items():
             lst_tuples.append(item)
-        sort_lst_tuples = sorted(lst_tuples, key = lambda x: x[1])
+        sort_lst_tuples = sorted(lst_tuples, key = lambda x : x[1])
         sort_by_param_lst = [i[0] for i in sort_lst_tuples]
         return ', '.join(sort_by_param_lst)
 
