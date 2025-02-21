@@ -5,6 +5,7 @@ current_path = os.path.dirname(__file__)
 homework_path = os.path.dirname(os.path.dirname(current_path))
 target_file_path = os.path.join(homework_path, 'eugene_okulik', 'hw_13', 'data.txt')
 
+
 def read_file():
 
     with open(target_file_path, encoding="utf8") as data_file:
