@@ -1,0 +1,40 @@
+INSERT INTO `students` (name, second_name, group_id) VALUES ('Tim', 'Ivanov', 778)
+
+INSERT INTO `books` (title, taken_by_student_id) VALUES ('Python part A', 4550)
+INSERT INTO `books` (title, taken_by_student_id) VALUES ('Python part B', 4550)
+INSERT INTO `books` (title, taken_by_student_id) VALUES ('Python part C', 4550)
+
+INSERT INTO `groups` (title, start_date, end_date) VALUES ('group24022025', 'feb 2024', 'feb 2025')
+UPDATE `students` SET group_id = 2915 WHERE name = 'Tim' AND second_name = 'Ivanov'
+
+INSERT INTO `subjets` (title) VALUES ('bio 9')
+INSERT INTO `subjets` (title) VALUES ('bio 11')
+
+INSERT INTO `lessons` (title, subject_id) VALUES ('bio lesson1', 4697)
+INSERT INTO `lessons` (title, subject_id) VALUES ('bio lesson2', 4697)
+INSERT INTO `lessons` (title, subject_id) VALUES ('bio lesson2', 4698)
+INSERT INTO `lessons` (title, subject_id) VALUES ('bio lesson1', 4698)
+
+INSERT INTO `marks` (value, lesson_id, student_id) VALUES ('0', 8656, 4550)
+INSERT INTO `marks` (value, lesson_id, student_id) VALUES ('1', 8657, 4550)
+INSERT INTO `marks` (value, lesson_id, student_id) VALUES ('2', 8658, 4550)
+INSERT INTO `marks` (value, lesson_id, student_id) VALUES ('3', 8659, 4550)
+
+SELECT value FROM `marks` WHERE student_id = 4550
+
+SELECT title FROM `books` WHERE taken_by_student_id = 4550
+
+SELECT groups.title, groups.start_date, groups.end_date, students.name, students.second_name, books.title, marks.value,
+lessons.title, subjets.title
+FROM `students`
+LEFT JOIN `groups`
+ON students.group_id = groups.id
+LEFT JOIN `books`
+ON students.id = books.taken_by_student_id
+LEFT JOIN `marks`
+ON students.id = marks.student_id
+LEFT JOIN `lessons`
+ON marks.lesson_id = lessons.id
+LEFT JOIN `subjets`
+ON lessons.subject_id = subjets.id
+WHERE name = 'Tim' AND second_name = 'Ivanov'
