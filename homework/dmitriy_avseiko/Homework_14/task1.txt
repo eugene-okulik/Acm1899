@@ -1,11 +1,11 @@
-INSERT INTO `students` (name, second_name, group_id) VALUES ('Tim', 'Ivanov', 778)
+INSERT INTO `students` (name, second_name) VALUES ('Tim', 'Ivanov')
 
 INSERT INTO `books` (title, taken_by_student_id) VALUES ('Python part A', 4550)
 INSERT INTO `books` (title, taken_by_student_id) VALUES ('Python part B', 4550)
 INSERT INTO `books` (title, taken_by_student_id) VALUES ('Python part C', 4550)
 
 INSERT INTO `groups` (title, start_date, end_date) VALUES ('group24022025', 'feb 2024', 'feb 2025')
-UPDATE `students` SET group_id = 2915 WHERE name = 'Tim' AND second_name = 'Ivanov'
+UPDATE `students` SET group_id = 2915 WHERE id = 4550
 
 INSERT INTO `subjets` (title) VALUES ('bio 9')
 INSERT INTO `subjets` (title) VALUES ('bio 11')
