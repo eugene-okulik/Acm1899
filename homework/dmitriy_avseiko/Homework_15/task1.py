@@ -8,7 +8,7 @@ db = mysql.connect(
     database='st-onl'
 )
 
-cursor=db.cursor(dictionary = True)
+cursor = db.cursor(dictionary=True)
 
 cursor.execute("INSERT INTO `students` (name, second_name) VALUES ('Testname', 'Testsecondname')")
 student_id = cursor.lastrowid
@@ -63,7 +63,7 @@ print(cursor.fetchall())
 
 select_all_info = f'''
 SELECT groups.title, groups.start_date, groups.end_date, students.name, students.second_name, books.title, marks.value,
-lessons.title, subjets.title 
+ lessons.title, subjets.title
 FROM `students`
 LEFT JOIN `groups`
 ON students.group_id = groups.id
