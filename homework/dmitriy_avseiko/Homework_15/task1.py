@@ -1,14 +1,14 @@
 import mysql.connector as mysql
 
 db = mysql.connect(
-    user = 'st-onl',
-    passwd = 'AVNS_tegPDkI5BlB2lW5eASC',
-    host = 'db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
-    port = '25060',
-    database = 'st-onl'
+    user='st-onl',
+    passwd='AVNS_tegPDkI5BlB2lW5eASC',
+    host='db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
+    port='25060',
+    database='st-onl'
 )
 
-cursor = db.cursor(dictionary = True)
+cursor=db.cursor(dictionary = True)
 
 cursor.execute("INSERT INTO `students` (name, second_name) VALUES ('Testname', 'Testsecondname')")
 student_id = cursor.lastrowid
@@ -63,7 +63,7 @@ print(cursor.fetchall())
 
 select_all_info = f'''
 SELECT groups.title, groups.start_date, groups.end_date, students.name, students.second_name, books.title, marks.value,
- lessons.title, subjets.title 
+lessons.title, subjets.title 
 FROM `students`
 LEFT JOIN `groups`
 ON students.group_id = groups.id
