@@ -26,34 +26,44 @@ cursor.execute("INSERT INTO `groups` (title, start_date, end_date) VALUES ('grou
 group_id = cursor.lastrowid
 cursor.execute(f'UPDATE `students` SET group_id = {group_id} WHERE id = {student_id}')
 
-subjects = [
-    ('chemistry29',),
-    ('biology29',)
-]
-insert_subjects_query = "INSERT INTO `subjets` (title) VALUES (%s)"
-cursor.executemany(insert_subjects_query, subjects)
-cursor.execute("SELECT id FROM `subjets` ORDER BY id DESC LIMIT %s", (len(subjects),))
-subject_ids = [row["id"] for row in cursor.fetchall()]
+insert_subject1_query = "INSERT INTO `subjets` (title) VALUES (%s)"
+values = ('chemistry29',)
+cursor.execute(insert_subject1_query, values)
+subject1_id = cursor.lastrowid
+insert_subject2_query = "INSERT INTO `subjets` (title) VALUES (%s)"
+values = ('biology29',)
+cursor.execute(insert_subject2_query, values)
+subject2_id = cursor.lastrowid
 
-lessons = [
-    ('lesson1', subject_ids[0]),
-    ('lesson2', subject_ids[0]),
-    ('lesson3', subject_ids[1]),
-    ('lesson4', subject_ids[1])
-]
-insert_lessons_query = "INSERT INTO `lessons` (title, subject_id) VALUES (%s, %s)"
-cursor.executemany(insert_lessons_query, lessons)
-cursor.execute("SELECT id FROM `lessons` ORDER BY id DESC LIMIT %s", (len(lessons),))
-lesson_ids = [row["id"] for row in cursor.fetchall()]
+insert_lesson1_query = "INSERT INTO `lessons` (title, subject_id) VALUES (%s, %s)"
+values = ('lesson1', subject1_id)
+cursor.execute(insert_lesson1_query, values)
+lesson1_id = cursor.lastrowid
+insert_lesson2_query = "INSERT INTO `lessons` (title, subject_id) VALUES (%s, %s)"
+values = ('lesson2', subject1_id)
+cursor.execute(insert_lesson2_query, values)
+lesson2_id = cursor.lastrowid
+insert_lesson3_query = "INSERT INTO `lessons` (title, subject_id) VALUES (%s, %s)"
+values = ('lesson3', subject2_id)
+cursor.execute(insert_lesson3_query, values)
+lesson3_id = cursor.lastrowid
+insert_lesson4_query = "INSERT INTO `lessons` (title, subject_id) VALUES (%s, %s)"
+values = ('lesson4', subject2_id)
+cursor.execute(insert_lesson4_query, values)
+lesson4_id = cursor.lastrowid
 
-marks = [
-    (0, lesson_ids[0], student_id),
-    (1, lesson_ids[1], student_id),
-    (2, lesson_ids[2], student_id),
-    (3, lesson_ids[3], student_id)
-]
-insert_marks_query = "INSERT INTO `marks` (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-cursor.executemany(insert_marks_query, marks)
+insert_mark1_query = "INSERT INTO `marks` (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+values = (0, lesson1_id, student_id)
+cursor.execute(insert_mark1_query, values)
+insert_mark2_query = "INSERT INTO `marks` (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+values = (1, lesson2_id, student_id)
+cursor.execute(insert_mark2_query, values)
+insert_mark3_query = "INSERT INTO `marks` (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+values = (2, lesson3_id, student_id)
+cursor.execute(insert_mark3_query, values)
+insert_mark4_query = "INSERT INTO `marks` (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+values = (3, lesson4_id, student_id)
+cursor.execute(insert_mark4_query, values)
 
 cursor.execute(f'SELECT * from marks where student_id = {student_id}')
 print(cursor.fetchall())
@@ -61,7 +71,7 @@ print(cursor.fetchall())
 cursor.execute(f'SELECT * from books where taken_by_student_id = {student_id}')
 print(cursor.fetchall())
 
-select_all_info = f'''
+select_all_info = '''
 SELECT groups.title, groups.start_date, groups.end_date, students.name, students.second_name, books.title, marks.value,
  lessons.title, subjets.title
 FROM `students`
@@ -75,9 +85,10 @@ LEFT JOIN `lessons`
 ON marks.lesson_id = lessons.id
 LEFT JOIN `subjets`
 ON lessons.subject_id = subjets.id
-WHERE students.id = {student_id}
+WHERE students.id = %s
 '''
-cursor.execute(select_all_info)
+values = (student_id,)
+cursor.execute(select_all_info, values)
 print(cursor.fetchall())
 
 db.commit()
