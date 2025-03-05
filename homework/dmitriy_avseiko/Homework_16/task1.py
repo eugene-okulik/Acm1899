@@ -42,7 +42,7 @@ for row in data:
     ON marks.lesson_id = lessons.id
     LEFT JOIN `subjets`
     ON lessons.subject_id = subjets.id
-    WHERE students.name = %s AND students.second_name = %s AND groups.title = %s AND books.title = %s 
+    WHERE students.name = %s AND students.second_name = %s AND groups.title = %s AND books.title = %s
     AND subjets.title = %s AND lessons.title = %s AND marks.value = %s
     '''
     values = (name, second_name, group_title, book_title, subject_title, lesson_title, mark_value)
