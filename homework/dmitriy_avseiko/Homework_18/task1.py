@@ -1,5 +1,6 @@
 import requests
 
+
 def get_all_objects():
     response = requests.get('http://167.172.172.115:52353/object')
     assert response.status_code == 200, 'Status code is incorrect'
