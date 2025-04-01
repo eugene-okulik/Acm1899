@@ -50,7 +50,7 @@ def test_get_object(get_object_id, conditions):
 
 @pytest.mark.parametrize('body', [{"name": "Test object1", "data": {"color": "red", "size": "1"}},
                                   {"name": "Test object2", "data": {"color": "blue", "size": "2"}},
-                                  {"name": "Test object3","data": {"color": "white","size": "3"}}])
+                                  {"name": "Test object3", "data": {"color": "white", "size": "3"}}])
 def test_create_an_object(conditions, body):
     headers = {'Content-Type': 'application/json'}
     response = requests.post(
