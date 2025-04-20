@@ -4,6 +4,7 @@ import pytest
 TEST_DATA = [{"name": "Test object2", "data": {"color": "test_color2", "size": "test_size2"}},
              {"name": "Test object3", "data": {"color": "test_color3", "size": "test_size3"}}]
 
+
 @pytest.mark.parametrize('data', TEST_DATA)
 def test_create_an_object(create_object_endpoint, data):
     create_object_endpoint.create_new_object(body=data)
