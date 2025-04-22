@@ -19,7 +19,3 @@ class Endpoint:
     @allure.step('Check that id is the same as sent')
     def check_response_id_is_correct(self, object_id):
         assert self.response_json['id'] == object_id
-
-    @allure.step('Clear object')
-    def clear_object(self, object_id):
-        requests.delete(f'{self.url}/{object_id}')

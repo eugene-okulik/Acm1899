@@ -10,6 +10,7 @@ def test_create_an_object(create_object_endpoint, data):
     create_object_endpoint.create_new_object(body=data)
     create_object_endpoint.check_response_status_code_is_200()
     create_object_endpoint.check_response_name_is_correct(data['name'])
+    create_object_endpoint.clear_object()
 
 
 def test_put_an_object(update_object_endpoint, object_id):
@@ -23,7 +24,6 @@ def test_put_an_object(update_object_endpoint, object_id):
     update_object_endpoint.make_changes_in_object(object_id, body)
     update_object_endpoint.check_response_status_code_is_200()
     update_object_endpoint.check_response_name_is_correct(body['name'])
-    update_object_endpoint.clear_object(object_id)
 
 
 def test_patch_an_object(modify_object_endpoint, object_id):
@@ -33,7 +33,6 @@ def test_patch_an_object(modify_object_endpoint, object_id):
     modify_object_endpoint.change_name_in_object(object_id, body)
     modify_object_endpoint.check_response_status_code_is_200()
     modify_object_endpoint.check_response_name_is_correct(body['name'])
-    modify_object_endpoint.clear_object(object_id)
 
 
 def test_delete_an_object(delete_object_endpoint, object_id):
