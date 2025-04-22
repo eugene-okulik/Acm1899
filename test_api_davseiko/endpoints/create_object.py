@@ -18,7 +18,6 @@ class CreateObject(Endpoint):
         self.object_id = self.response_json['id']
         return self.response
 
-
     @allure.step('Clear object')
     def clear_object(self):
         requests.delete(f'{self.url}/{self.object_id}')
