@@ -6,11 +6,11 @@ TEST_DATA = [{"name": "Test object2", "data": {"color": "test_color2", "size": "
 
 
 @pytest.mark.parametrize('data', TEST_DATA)
-def test_create_an_object(create_object_endpoint, data):
+def test_create_an_object(create_object_endpoint, delete_object_endpoint, data):
     create_object_endpoint.create_new_object(body=data)
     create_object_endpoint.check_response_status_code_is_200()
     create_object_endpoint.check_response_name_is_correct(data['name'])
-    create_object_endpoint.clear_object()
+    delete_object_endpoint.delete_object(create_object_endpoint.object_id)
 
 
 def test_put_an_object(update_object_endpoint, object_id):

@@ -38,8 +38,9 @@ def get_object_info_endpoint():
 
 
 @pytest.fixture()
-def object_id(create_object_endpoint):
+def object_id(create_object_endpoint, delete_object_endpoint):
     body = {"name": "Test object1", "data": {"color": "test_color1", "size": "test_size1"}}
     create_object_endpoint.create_new_object(body)
     yield create_object_endpoint.object_id
-    create_object_endpoint.clear_object()
+    delete_object_endpoint.delete_object(create_object_endpoint.object_id)
+
