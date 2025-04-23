@@ -43,4 +43,3 @@ def object_id(create_object_endpoint, delete_object_endpoint):
     create_object_endpoint.create_new_object(body)
     yield create_object_endpoint.object_id
     delete_object_endpoint.delete_object(create_object_endpoint.object_id)
-
