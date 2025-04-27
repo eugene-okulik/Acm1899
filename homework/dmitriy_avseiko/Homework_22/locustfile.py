@@ -28,10 +28,7 @@ class Object(HttpUser):
     def put_an_object(self):
         self.client.put(
             f'/object/{random.choice([21, 29, 276, 239])}',
-            json={"name": "Test object_upd_put",
-            "data": {
-            "color": "test_color_upd_put",
-            "size": "test_size_upd_put"}},
+            json={"name": "Test object_upd_put", "data": {"color": "test_color_upd_put", "size": "test_size_upd_put"}},
             headers={'Content-Type': 'application/json'}
         )
 
